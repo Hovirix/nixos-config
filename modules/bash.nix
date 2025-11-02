@@ -13,6 +13,7 @@
     traefik = "sudo nixos-container root-login traefik";
     authelia = "sudo nixos-container root-login authelia";
     nextcloud = "sudo nixos-container root-login nextcloud";
+    opencloud = "sudo nixos-container root-login opencloud";
     vaultwarden = "sudo nixos-container root-login vaultwarden";
 
     # NixOS

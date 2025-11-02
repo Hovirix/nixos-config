@@ -21,9 +21,8 @@
     paths = [
       "/persist/etc/ssh"
       "/persist/var/lib/nixos-containers/immich/var/lib/immich"
-      "/persist/var/lib/nixos-containers/immich/var/lib/postgresql"       
-      "/persist/var/lib/nixos-containers/nextcloud/var/lib/nextcloud"
-      "/persist/var/lib/nixos-containers/nextcloud/var/lib/postgresql"
+      "/persist/var/lib/nixos-containers/immich/var/lib/postgresql"
+      "/persist/var/lib/nixos-containers/opencloud/var/lib/opencloud"
       "/persist/var/lib/nixos-containers/vaultwarden/var/lib/vaultwarden"
     ];
 

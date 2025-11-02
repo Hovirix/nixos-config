@@ -41,7 +41,7 @@
         ./modules/kernel.nix
         ./modules/fstrim.nix
         ./modules/restic.nix
-        # ./modules/podman.nix
+        ./modules/podman.nix
         ./modules/openssh.nix
         ./modules/network.nix
         ./modules/systemd.nix
@@ -56,9 +56,10 @@
         ./containers/adguard.nix
         ./containers/traefik.nix
         ./containers/authelia.nix
-        ./containers/nextcloud.nix
+        # ./containers/nextcloud.nix
         ./containers/vaultwarden.nix
         ./containers/cloudflared.nix
+        ./containers/opencloud.nix
 
         inputs.disko.nixosModules.disko
         inputs.agenix.nixosModules.default
