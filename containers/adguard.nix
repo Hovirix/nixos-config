@@ -86,16 +86,10 @@
           };
 
           filters = map (url: { enabled = true; inherit url; }) [
-            "https://badmojr.github.io/1Hosts/Pro/adblock.txt"
-            # "https://cdn.jsdelivr.net/gh/badmojr/1Hosts@master/Xtra/adblock.txt"
-
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/ultimate.txt"
             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/spam-tlds.txt"
-            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.apple.txt"
-
-            "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Apple"
-            "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tracking"
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adguard/dns-rebind-protection.txt"
           ];
         };
       };
