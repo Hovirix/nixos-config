@@ -1,26 +1,15 @@
 { inputs, pkgs, ... }:
 {
-  imports = [ inputs.stylix.homeModules.stylix ];
+  imports = [ inputs.stylix.nixosModules.stylix ];
 
   stylix = {
     enable = true;
-    autoEnable = true;
-
+    autoEnable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     targets = {
       qt.enable = false;
-      yazi.enable = false;
-      sway.enable = false;
-      tmux.enable = false;
-      fish.enable = false;
-      wofi.enable = false;
-      tofi.enable = false;
-      helix.enable = false;
-      # vscode.enable = false;
-      waybar.enable = false;
-      hyprland.enable = false;
-      librewolf.enable = false;
+      gtk.enable = true;
     };
 
     iconTheme = {
