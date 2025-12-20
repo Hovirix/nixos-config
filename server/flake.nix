@@ -60,6 +60,7 @@
         ./containers/vaultwarden.nix
         ./containers/cloudflared.nix
         ./containers/opencloud.nix
+        # ./containers/linkwarden.nix
 
         inputs.disko.nixosModules.disko
         inputs.agenix.nixosModules.default
