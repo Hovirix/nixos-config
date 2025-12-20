@@ -22,7 +22,8 @@
           size = "100%";
           content = {
             type = "luks";
-            name = "crypted";
+            name = "cryptroot";
+            extraOpenArgs = [ "--allow-discards" ];
             content = {
               type = "filesystem";
               format = "ext4";
