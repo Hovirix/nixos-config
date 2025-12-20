@@ -30,10 +30,4 @@
       "vm.dirty_background_bytes" = 67108864;
     };
   };
-
-  # services.scx = {
-  #   enable = true;
-  #   scheduler = "scx_lavd";
-  #   extraArgs = [ "--autopower" ];
-  # };
 }

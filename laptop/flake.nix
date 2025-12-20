@@ -39,15 +39,16 @@
           ./modules/tlp.nix
           ./modules/nix.nix
           # ./modules/adb.nix
+          ./modules/alsa.nix
           ./modules/boot.nix
           ./modules/time.nix
           ./modules/users.nix
           ./modules/disko.nix
           ./modules/fstrim.nix
+          ./modules/stylix.nix
           ./modules/kernel.nix
           ./modules/network.nix
-          ./modules/graphics.nix
-          ./modules/pipewire.nix
+          # ./modules/pipewire.nix
           ./modules/bluetooth.nix
           ./modules/configuration.nix
           ./modules/hardware-configuration.nix

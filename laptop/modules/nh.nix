@@ -2,7 +2,7 @@
 {
   programs.nh = {
     enable = true;
-    flake = "/home/${username}/nixos";
+    flake = "/home/${username}/nixos-config/laptop";
     clean = {
       enable = true;
       dates = "weekly";
