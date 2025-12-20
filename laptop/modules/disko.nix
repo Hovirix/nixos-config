@@ -27,7 +27,7 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
-              mountOptions = [ "defaults" "noatime" "nodiratime" ];
+              mountOptions = [ "defaults" "noatime" "lazytime" "commit=600" ];
             };
           };
         };
