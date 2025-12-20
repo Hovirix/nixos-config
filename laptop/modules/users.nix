@@ -1,4 +1,4 @@
-{ username, pkgs, ... }:
+{ username, ... }:
 {
   security.sudo.wheelNeedsPassword = false;
 
@@ -7,11 +7,7 @@
     autologinUser = username;
   };
 
-  # users.mutableUsers = false;
-  programs.zsh.enable = true;
-
   users.users.${username} = {
-    shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
   };
