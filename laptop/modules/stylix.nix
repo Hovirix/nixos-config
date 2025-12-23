@@ -26,14 +26,17 @@
     };
 
     fonts = {
+
+      packages = [ pkgs.nerd-fonts.symbols-only ];
+
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "noto-fonts-color-emoji";
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.droid-sans-mono;
-        name = "DroidSansM Nerd Font";
+        package = pkgs.hack-font;
+        name = "Hack";
       };
 
       sansSerif = {
