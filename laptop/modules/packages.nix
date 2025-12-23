@@ -51,6 +51,10 @@
     freetube
     ungoogled-chromium
 
+    yaziPlugins.compress
+    yaziPlugins.recycle-bin
+    yaziPlugins.full-border
+
     # CLI tools
     gh
     zsh
@@ -58,8 +62,10 @@
     eza
     fzf
     git
+    stow
     zoxide
     starship
+    trash-cli
     fastfetch
     github-copilot-cli
   ];
