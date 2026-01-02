@@ -64,6 +64,7 @@
     git
     stow
     zoxide
+    ripgrep
     starship
     trash-cli
     fastfetch
@@ -75,6 +76,7 @@
     # Nix
     nil
     nixpkgs-fmt
+    neix.packages.${pkgs.system}.default
 
     # Python
     uv
