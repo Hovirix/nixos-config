@@ -2,7 +2,7 @@
 {
   boot = {
 
-    kernelPackages = inputs.chaotic.legacyPackages.${"x86_64-linux"}.linuxPackages_cachyos;
+    # kernelPackages = inputs.chaotic.legacyPackages.${"x86_64-linux"}.linuxPackages_cachyos;
 
     kernelParams = [
       # Power saving
