@@ -9,7 +9,7 @@
     hostName = "${hostname}";
     firewall.checkReversePath = false; # For VPN access
 
-    iwd = {
+    wireless.iwd = {
       enable = true;
       settings = {
 

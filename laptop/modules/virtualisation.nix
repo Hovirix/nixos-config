@@ -8,7 +8,7 @@
 
     podman = {
       enable = true;
-      autoprune.enable = true;
+      autoPrune.enable = true;
     };
 
     libvirtd = {

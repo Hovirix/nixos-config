@@ -1,4 +1,4 @@
-{ username, pkgs, ... }:
+{ inputs, username, pkgs, ... }:
 # with pkgs;
 # let
 #   Rstudio = rstudioWrapper.override {
@@ -19,10 +19,12 @@
 
     # Desktop
     sway
+    swaybg
     swayidle
     swaylock
     i3status
     autotiling-rs
+    bibata-cursors
 
     # utilities
     mako
@@ -49,14 +51,12 @@
     zathura
     appflowy
     freetube
+    firefox
     ungoogled-chromium
-
-    yaziPlugins.compress
-    yaziPlugins.recycle-bin
-    yaziPlugins.full-border
 
     # CLI tools
     gh
+    nh
     zsh
     bat
     eza
@@ -76,7 +76,7 @@
     # Nix
     nil
     nixpkgs-fmt
-    neix.packages.${pkgs.system}.default
+    inputs.neix.packages.${pkgs.system}.default
 
     # Python
     uv
@@ -105,7 +105,7 @@
     docker-language-server
 
     # Terraform
-    terraform
-    terraform-ls
+    # terraform
+    # terraform-ls
   ];
 }

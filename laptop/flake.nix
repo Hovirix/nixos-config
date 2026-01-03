@@ -20,11 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,22 +35,25 @@
         modules = [
           inputs.disko.nixosModules.disko
           ./modules/nh.nix
-          ./modules/vm.nix
           ./modules/tlp.nix
           ./modules/nix.nix
+          ./modules/zsh.nix
           # ./modules/adb.nix
+          ./modules/font.nix
           ./modules/alsa.nix
           ./modules/boot.nix
           ./modules/time.nix
           ./modules/users.nix
           ./modules/disko.nix
           ./modules/fstrim.nix
-          ./modules/stylix.nix
           ./modules/kernel.nix
           ./modules/network.nix
+          ./modules/packages.nix
+          ./modules/graphics.nix
           # ./modules/pipewire.nix
           ./modules/bluetooth.nix
           ./modules/configuration.nix
+          ./modules/virtualisation.nix
           ./modules/hardware-configuration.nix
         ];
 
