@@ -23,7 +23,7 @@ in
     modemmanager.enable = false;
 
     hostName = hostname;
-    nameservers = [ ip ];
+    nameservers = [ "192.168.1.1" ];
 
     defaultGateway = {
       inherit interface;
