@@ -1,8 +1,15 @@
-{ inputs, ... }:
+{ inputs, pkgs, config, ... }:
 {
   boot = {
 
-    # kernelPackages = inputs.chaotic.legacyPackages.${"x86_64-linux"}.linuxPackages_cachyos;
+    kernelPackages = inputs.chaotic.legacyPackages.${"x86_64-linux"}.linuxPackages_cachyos;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+
+    # extraModulePackages = [
+    #   config.boot.kernelPackages.yt6801
+    # ];
+
+    kernelModules = [ "yt6801" ];
 
     kernelParams = [
       # Power saving
