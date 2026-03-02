@@ -1,5 +1,7 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
+  imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+
   boot = {
     tmp.cleanOnBoot = true;
     supportedFilesystems.zfs = lib.mkForce false;
@@ -7,12 +9,17 @@
     loader = {
       timeout = lib.mkForce 0;
       efi.canTouchEfiVariables = true;
+      systemd-boot.enable = lib.mkForce false;
+    };
 
-      systemd-boot = {
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+      autoGenerateKeys.enable = true;
+      autoEnrollKeys = {
         enable = true;
-        configurationLimit = 10;
+        autoReboot = true;
       };
     };
   };
 }
-      
