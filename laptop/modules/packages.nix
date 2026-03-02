@@ -1,23 +1,23 @@
 { inputs, username, pkgs, ... }:
-# with pkgs;
-# let
-#   Rstudio = rstudioWrapper.override {
-#     packages = with rPackages; [
-#       languageserver
-#       ggplot2
-#       httpgd
-#       styler
-#       dplyr
-#       rlang
-#       lintr
-#       BSDA
-#     ];
-#   };
-# in
+with pkgs;
+let
+  Rstudio = rstudioWrapper.override {
+    packages = with rPackages; [
+      languageserver
+      ggplot2
+      httpgd
+      styler
+      dplyr
+      rlang
+      lintr
+      BSDA
+    ];
+  };
+in
 {
   environment.systemPackages = with pkgs; [
 
-    # Desktop
+    # Desktop 
     sway
     swaybg
     swayidle
@@ -26,86 +26,61 @@
     autotiling-rs
     bibata-cursors
 
-    # utilities
+    # System utilities
     mako
     grim
     slurp
     fuzzel
     impala
     bluetui
+    wiremix
     wlsunset
     libnotify
+    xdg-utils
     wf-recorder
     wl-clipboard
     brightnessctl
 
-    # Apps
+    # GUI Applications
     imv
     mpv
-    foot
-    tmux
-    yazi
-    btop
-    helix
-    lazygit
+    wezterm
+    Rstudio
     zathura
-    appflowy
+    # appflowy
     freetube
-    firefox
-    ungoogled-chromium
-
-    # CLI tools
-    gh
-    nh
-    zsh
-    bat
-    eza
-    fzf
-    git
-    stow
-    zoxide
-    ripgrep
-    starship
-    trash-cli
-    fastfetch
-    github-copilot-cli
+    librewolf
+    inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.appflowy
   ];
 
   users.users.${username}.packages = with pkgs; [
+
+    # Shell / CLI
+    gh
+    git
+    bat
+    eza
+    fzf
+    tmux
+    yazi
+    btop
+    stow
+    helix
+    zoxide
+    lazygit
+    ripgrep
+    starship
+    opencode
+    trash-cli
+    fastfetch
 
     # Nix
     nil
     nixpkgs-fmt
     inputs.neix.packages.${pkgs.system}.default
 
-    # Python
-    uv
-    ruff
-    pyright
-
     # Bash
     shfmt
     bash-language-server
-
-    # JavaScript
-    pnpm
-    nodejs
-
-    # YAML
-    yamlfix
-    yaml-language-server
-
-    # Ansible
-    ansible
-    ansible-lint
-
-    # Containers
-    dockerfmt
-    podman-tui
-    docker-language-server
-
-    # Terraform
-    # terraform
-    # terraform-ls
   ];
 }
