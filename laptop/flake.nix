@@ -2,7 +2,7 @@
   inputs = {
 
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     neix = {
@@ -21,7 +21,7 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -40,7 +40,7 @@
           ./modules/zsh.nix
           # ./modules/adb.nix
           ./modules/font.nix
-          ./modules/alsa.nix
+          # ./modules/alsa.nix
           ./modules/boot.nix
           ./modules/time.nix
           ./modules/users.nix
@@ -50,8 +50,9 @@
           ./modules/network.nix
           ./modules/packages.nix
           ./modules/graphics.nix
-          # ./modules/pipewire.nix
+          ./modules/pipewire.nix
           ./modules/bluetooth.nix
+          ./modules/tailscale.nix
           ./modules/configuration.nix
           ./modules/virtualisation.nix
           ./modules/hardware-configuration.nix
