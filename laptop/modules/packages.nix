@@ -47,6 +47,7 @@ in
     wezterm
     Rstudio
     zathura
+    obsidian
     # appflowy
     freetube
     librewolf
@@ -67,6 +68,7 @@ in
     stow
     helix
     zoxide
+    direnv
     lazygit
     ripgrep
     starship
