@@ -25,6 +25,7 @@ in
     i3status
     autotiling-rs
     bibata-cursors
+    papirus-icon-theme
 
     # System utilities
     mako
@@ -40,6 +41,7 @@ in
     wf-recorder
     wl-clipboard
     brightnessctl
+    xdg-desktop-portal-termfilechooser
 
     # GUI Applications
     imv
@@ -47,11 +49,9 @@ in
     wezterm
     Rstudio
     zathura
-    obsidian
-    # appflowy
+    appflowy
     freetube
     librewolf
-    inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.appflowy
   ];
 
   users.users.${username}.packages = with pkgs; [
@@ -59,30 +59,25 @@ in
     # Shell / CLI
     gh
     git
+    age
     bat
     eza
     fzf
     tmux
     yazi
     btop
-    stow
     helix
+    delta
     zoxide
     direnv
     lazygit
+    gh-dash
     ripgrep
+    chezmoi
     starship
     opencode
     trash-cli
     fastfetch
-
-    # Nix
-    nil
-    nixpkgs-fmt
     inputs.neix.packages.${pkgs.system}.default
-
-    # Bash
-    shfmt
-    bash-language-server
   ];
 }

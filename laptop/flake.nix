@@ -52,7 +52,7 @@
           ./modules/graphics.nix
           ./modules/pipewire.nix
           ./modules/bluetooth.nix
-          ./modules/tailscale.nix
+          # ./modules/tailscale.nix
           ./modules/configuration.nix
           ./modules/virtualisation.nix
           ./modules/hardware-configuration.nix
