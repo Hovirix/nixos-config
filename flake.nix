@@ -1,30 +1,88 @@
 {
-  description = "HX NixOS configs dev shell";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    neix = {
+      url = "github:Hovirix/neix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    helix = {
+      url = "github:helix-editor/helix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in
+  outputs =
+    { nixpkgs, ... }@inputs:
     {
-      devShells.${system} = {
-        default = pkgs.mkShell {
-          packages = with pkgs; [
-            nil
-            nixfmt
-            deadnix
-            statix
-          ];
-        };
 
-        docs = pkgs.mkShell {
-          packages = with pkgs; [
-            nodejs
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+
+      nixosConfigurations = {
+        laptop = nixpkgs.lib.nixosSystem {
+          modules = [
+            inputs.disko.nixosModules.disko
+
+            ./system/disko.nix
+            ./system/hardware-configuration.nix
+
+            # core
+            ./modules/core/boot.nix
+            ./modules/core/network.nix
+            ./modules/core/nix.nix
+            ./modules/core/time.nix
+            ./modules/core/users.nix
+
+            # hardware
+            # ./modules/hardware/alsa.nix
+            ./modules/hardware/kernel.nix
+            ./modules/hardware/bluetooth.nix
+            ./modules/hardware/graphics.nix
+            ./modules/hardware/tlp.nix
+            ./modules/hardware/virtualisation.nix
+
+            # desktop
+            ./modules/desktop/sway.nix
+            ./modules/desktop/apps.nix
+            ./modules/desktop/pipewire.nix
+            ./modules/desktop/font.nix
+            ./modules/desktop/xdg.nix
+            ./modules/desktop/flatpak.nix
+
+            # dev
+            # ./modules/dev/adb.nix
+            ./modules/dev/containers.nix
+            ./modules/dev/crypto.nix
+            ./modules/dev/nh.nix
+            ./modules/dev/packages.nix
+            ./modules/dev/shell.nix
+
+            # services
+            ./modules/services/dbus.nix
+            ./modules/services/fstrim.nix
+            # ./modules/services/tailscale.nix
           ];
+
+          specialArgs = {
+            inherit inputs;
+            username = "nixos";
+            hostname = "laptop";
+          };
         };
       };
     };
