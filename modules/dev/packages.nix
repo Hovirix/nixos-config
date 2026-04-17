@@ -1,0 +1,33 @@
+{
+  pkgs,
+  username,
+  inputs,
+  ...
+}:
+{
+  users.users.${username}.packages = with pkgs; [
+    fd
+    gh
+    git
+    age
+    bat
+    eza
+    fzf
+    tmux
+    yazi
+    btop
+    helix
+    delta
+    zoxide
+    direnv
+    lazygit
+    gh-dash
+    ripgrep
+    chezmoi
+    starship
+    opencode
+    trash-cli
+    fastfetch
+    inputs.neix.packages.${pkgs.system}.default
+  ];
+}
