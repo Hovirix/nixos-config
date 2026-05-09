@@ -1,9 +1,10 @@
+{ pkgs, ...}:
 {
-  programs.gnupg = {
-    agent.enable = true;
-  };
+  services.pcscd.enable = true;
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
-  programs.ssh = {
-    startAgent = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 }
