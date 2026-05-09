@@ -28,6 +28,7 @@
     opencode
     trash-cli
     fastfetch
+    television
     inputs.neix.packages.${pkgs.system}.default
   ];
 }
