@@ -51,11 +51,12 @@
             ./modules/hardware/virtualisation.nix
 
             # desktop
-            ./modules/desktop/sway.nix
+            ./modules/desktop/hyprland.nix
+            # ./modules/desktop/sway.nix
             ./modules/desktop/apps.nix
             ./modules/desktop/pipewire.nix
             ./modules/desktop/font.nix
-            ./modules/desktop/xdg.nix
+            # ./modules/desktop/xdg.nix
             ./modules/desktop/flatpak.nix
 
             # dev
