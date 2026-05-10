@@ -70,7 +70,7 @@
             # services
             ./modules/services/dbus.nix
             ./modules/services/fstrim.nix
-            # ./modules/services/tailscale.nix
+            ./modules/services/getty.nix
           ];
 
           specialArgs = {
