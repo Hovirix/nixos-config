@@ -2,30 +2,33 @@
 {
   programs.sway = {
     enable = true;
-    xwayland.enable = false;
     extraPackages = with pkgs; [
+      autotiling-rs
+      bibata-cursors
+      bluetui
+      brightnessctl
+      fuzzel
+      grim
+      i3status
+      impala
+      libnotify
+      mako
+      nwg-displays
+      papirus-icon-theme
       swaybg
       swayidle
       swaylock
-      i3status
-      autotiling-rs
-      bibata-cursors
-      papirus-icon-theme
-      mako
-      grim
       slurp
-      fuzzel
-      impala
-      bluetui
-      wiremix
-      wlsunset
-      libnotify
       wf-recorder
-      brightnessctl
-      xdg-utils
+      wiremix
       wl-clipboard
+      wlsunset
     ];
   };
+
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+  '';
 
   security.pam.services.swaylock = { };
 }
