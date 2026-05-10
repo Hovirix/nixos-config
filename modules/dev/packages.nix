@@ -6,6 +6,7 @@
 }:
 {
   users.users.${username}.packages = with pkgs; [
+    atuin
     fd
     gh
     git
@@ -13,6 +14,7 @@
     bat
     eza
     fzf
+    w3m
     tmux
     yazi
     btop
@@ -20,6 +22,7 @@
     delta
     zoxide
     direnv
+    neovim
     lazygit
     gh-dash
     ripgrep
@@ -28,7 +31,6 @@
     opencode
     trash-cli
     fastfetch
-    television
     inputs.neix.packages.${pkgs.system}.default
   ];
 }
