@@ -3,6 +3,12 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-25.11";
 
+    agenix= {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "nixpkgs";
+      };
+      
     neix = {
       url = "github:Hovirix/neix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +39,8 @@
             inputs.disko.nixosModules.disko
 
             ./system/disko.nix
-            ./system/hardware-configuration.nix
+             ./system/hardware-configuration.nix
+             inputs.agenix.nixosModules.default
 
             # core
             ./modules/core/boot.nix
@@ -68,10 +75,11 @@
             ./modules/dev/shell.nix
 
             # services
-            ./modules/services/dbus.nix
-            ./modules/services/fstrim.nix
-            ./modules/services/getty.nix
-          ];
+             ./modules/services/dbus.nix
+             ./modules/services/fstrim.nix
+             ./modules/services/getty.nix
+             ./modules/services/wireguard.nix
+           ];
 
           specialArgs = {
             inherit inputs;
