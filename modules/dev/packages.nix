@@ -6,7 +6,6 @@
 }:
 {
   users.users.${username}.packages = with pkgs; [
-    atuin
     fd
     gh
     git
@@ -15,14 +14,12 @@
     eza
     fzf
     w3m
-    tmux
     yazi
     btop
     helix
     delta
     zoxide
     direnv
-    neovim
     lazygit
     gh-dash
     ripgrep
@@ -33,4 +30,9 @@
     fastfetch
     inputs.neix.packages.${pkgs.system}.default
   ];
+
+  programs.direnv = {
+    silent = true;
+    nix-direnv.enable = true;
+  };
 }
