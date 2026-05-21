@@ -3,12 +3,12 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-25.11";
 
-    agenix= {
+    agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "nixpkgs";
-      };
-      
+    };
+
     neix = {
       url = "github:Hovirix/neix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,17 +30,16 @@
   outputs =
     { nixpkgs, ... }@inputs:
     {
-
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
       nixosConfigurations = {
         laptop = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.disko.nixosModules.disko
+            inputs.agenix.nixosModules.default
 
             ./system/disko.nix
-             ./system/hardware-configuration.nix
-             inputs.agenix.nixosModules.default
+            ./system/hardware-configuration.nix
 
             # core
             ./modules/core/boot.nix
@@ -69,17 +68,17 @@
             # dev
             # ./modules/dev/adb.nix
             ./modules/dev/containers.nix
-            ./modules/dev/crypto.nix
             ./modules/dev/nh.nix
             ./modules/dev/packages.nix
             ./modules/dev/shell.nix
+            ./modules/dev/yubikey.nix
 
             # services
-             ./modules/services/dbus.nix
-             ./modules/services/fstrim.nix
-             ./modules/services/getty.nix
-             ./modules/services/wireguard.nix
-           ];
+            ./modules/services/dbus.nix
+            ./modules/services/fstrim.nix
+            ./modules/services/getty.nix
+            ./modules/services/wireguard.nix
+          ];
 
           specialArgs = {
             inherit inputs;
