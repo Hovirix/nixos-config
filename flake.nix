@@ -74,6 +74,8 @@
             ./modules/dev/yubikey.nix
 
             # services
+            # ./modules/services/restic.nix
+            # ./modules/services/ratbagd.nix
             ./modules/services/dbus.nix
             ./modules/services/fstrim.nix
             ./modules/services/getty.nix
