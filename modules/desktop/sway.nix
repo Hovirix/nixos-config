@@ -5,22 +5,18 @@
     extraPackages = with pkgs; [
       autotiling-rs
       bibata-cursors
-      bluetui
       brightnessctl
       fuzzel
       grim
       i3status
-      impala
       libnotify
       mako
-      nwg-displays
       papirus-icon-theme
       swaybg
       swayidle
       swaylock
       slurp
       wf-recorder
-      wiremix
       wl-clipboard
       wlsunset
     ];

@@ -8,6 +8,7 @@
   users.users.${username}.packages = with pkgs; [
     fd
     gh
+    zk
     git
     age
     bat
@@ -19,7 +20,7 @@
     helix
     delta
     zoxide
-    direnv
+    # direnv
     lazygit
     gh-dash
     ripgrep
@@ -29,9 +30,14 @@
     trash-cli
     fastfetch
     inputs.neix.packages.${pkgs.system}.default
+    (pass.withExtensions (exts: [
+      exts.pass-otp
+      exts.pass-import
+    ]))
   ];
 
   programs.direnv = {
+    enable = true;
     silent = true;
     nix-direnv.enable = true;
   };

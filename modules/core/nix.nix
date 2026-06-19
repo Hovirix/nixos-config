@@ -20,11 +20,13 @@
       builders-use-substitutes = true;
       download-buffer-size = 524288000;
       experimental-features = [
-        "nix-command"
+        "ca-derivations"
+        "fetch-tree"
         "flakes"
-        "recursive-nix"
-        "fetch-closure"
+        "nix-command"
+        "pipe-operators"
       ];
+      warn-dirty = false;
     };
   };
 }

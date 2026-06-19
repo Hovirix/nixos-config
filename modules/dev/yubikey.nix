@@ -1,12 +1,11 @@
 { pkgs, ... }:
 {
-  services = {
-    pcscd.enable = true;
-    udev.packages = with pkgs; [
-      yubikey-manager
-      yubikey-personalization
-    ];
-  };
+  services.pcscd.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    gnupg
+    yubikey-manager
+  ];
 
   programs.gnupg.agent = {
     enable = true;

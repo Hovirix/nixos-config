@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -68,17 +67,16 @@
             # dev
             # ./modules/dev/adb.nix
             ./modules/dev/containers.nix
-            ./modules/dev/nh.nix
             ./modules/dev/packages.nix
             ./modules/dev/shell.nix
             ./modules/dev/yubikey.nix
 
             # services
-            # ./modules/services/restic.nix
             # ./modules/services/ratbagd.nix
             ./modules/services/dbus.nix
             ./modules/services/fstrim.nix
             ./modules/services/getty.nix
+            ./modules/services/restic.nix
             ./modules/services/wireguard.nix
           ];
 
