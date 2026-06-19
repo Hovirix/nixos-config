@@ -8,4 +8,14 @@ in
     armor = true;
     publicKeys = PublicKeys;
   };
+
+  "restic_password.age" = {
+    armor = true;
+    publicKeys = PublicKeys;
+  };
+
+  "restic_ssh_key.age" = {
+    armor = true;
+    publicKeys = PublicKeys;
+  };
 }
