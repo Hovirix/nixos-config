@@ -1,9 +1,6 @@
-{ config, username, ... }:
+{ config, ... }:
 {
   sops = {
-    defaultSopsFile = ../../secrets/laptop.yaml;
-    gnupg.home = "/home/${username}/.gnupg";
-
     secrets."wireguard/config" = {
       owner = "root";
       group = "root";

@@ -6,9 +6,6 @@ let
 in
 {
   sops = {
-    defaultSopsFile = ../../secrets/laptop.yaml;
-    gnupg.home = "/home/${username}/.gnupg";
-
     secrets = {
       "restic/password" = {
         mode = "0400";

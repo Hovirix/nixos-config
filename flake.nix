@@ -43,6 +43,7 @@
             ./modules/core/boot.nix
             ./modules/core/network.nix
             ./modules/core/nix.nix
+            ./modules/core/secrets.nix
             ./modules/core/time.nix
             ./modules/core/users.nix
 

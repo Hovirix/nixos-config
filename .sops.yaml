@@ -1,4 +1,7 @@
 creation_rules:
   - path_regex: secrets/laptop\.yaml$
+    age: >-
+     age1ntqm6mckcfdq06xfh8nxc7fjvx5hwsnjx4lxwlrgm5zcq5gat4qqwdunuv
     pgp: >-
       82F33E760DDCEB7BB83E2EC3AAC0F2E854677A6F
+
