@@ -5,17 +5,20 @@ let
   repositoryUser = "backup-laptop";
 in
 {
-  age.secrets = {
-    restic_password = {
-      file = ../../secrets/restic_password.age;
-      mode = "0400";
-      owner = username;
-    };
+  sops = {
+    defaultSopsFile = ../../secrets/laptop.yaml;
+    gnupg.home = "/home/${username}/.gnupg";
 
-    restic_ssh_key = {
-      file = ../../secrets/restic_ssh_key.age;
-      mode = "0400";
-      owner = username;
+    secrets = {
+      "restic/password" = {
+        mode = "0400";
+        owner = username;
+      };
+
+      "restic/ssh_key" = {
+        mode = "0400";
+        owner = username;
+      };
     };
   };
 
@@ -23,14 +26,16 @@ in
     user = username;
     initialize = true;
     repository = "sftp:${repositoryUser}@${repositoryHost}:${repositoryPath}";
-    passwordFile = config.age.secrets.restic_password.path;
+    passwordFile = config.sops.secrets."restic/password".path;
 
     paths = [
       "/home/${username}/Documents"
     ];
 
     extraOptions = [
-      "sftp.command='ssh -i ${config.age.secrets.restic_ssh_key.path} -o IdentitiesOnly=yes ${repositoryUser}@${repositoryHost} -s sftp'"
+      "sftp.command='ssh -i ${
+        config.sops.secrets."restic/ssh_key".path
+      } -o IdentitiesOnly=yes ${repositoryUser}@${repositoryHost} -s sftp'"
     ];
 
     extraBackupArgs = [

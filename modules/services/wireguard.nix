@@ -1,12 +1,13 @@
 { config, username, ... }:
 {
-  age = {
-    identityPaths = [ "/home/${username}/.ssh/id_ed25519" ];
-    secrets.wg_config = {
-      file = ../../secrets/wg_config.age;
+  sops = {
+    defaultSopsFile = ../../secrets/laptop.yaml;
+    gnupg.home = "/home/${username}/.gnupg";
+
+    secrets."wireguard/config" = {
       owner = "root";
       group = "root";
-      mode = "600";
+      mode = "0600";
     };
   };
 
@@ -14,7 +15,7 @@
     firewall.checkReversePath = "loose";
     wg-quick.interfaces.wg0 = {
       autostart = false;
-      configFile = config.age.secrets.wg_config.path;
+      configFile = config.sops.secrets."wireguard/config".path;
     };
   };
 }

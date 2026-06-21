@@ -2,10 +2,9 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "nixpkgs";
     };
 
     neix = {
@@ -35,7 +34,7 @@
         laptop = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.disko.nixosModules.disko
-            inputs.agenix.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
 
             ./system/disko.nix
             ./system/hardware-configuration.nix
