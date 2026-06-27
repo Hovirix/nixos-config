@@ -17,11 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-anywhere = {
-      url = "github:nix-community/nixos-anywhere";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     preservation.url = "github:nix-community/preservation";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
@@ -34,29 +29,8 @@
 
   outputs =
     { nixpkgs, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
-      apps.${system}.install = {
-        type = "app";
-        meta.description = "Install the laptop configuration locally with nixos-anywhere";
-        program = "${
-          pkgs.writeShellApplication {
-            name = "install-laptop";
-            runtimeInputs = [ inputs.nixos-anywhere.packages.${system}.nixos-anywhere ];
-            text = ''
-              nixos-anywhere \
-                --generate-hardware-config nixos-generate-config ./system/hardware-configuration.nix \
-                --flake .#laptop \
-                --target-host root@localhost
-            '';
-          }
-        }/bin/install-laptop";
-      };
-
-      formatter.${system} = pkgs.nixfmt-tree;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
       nixosConfigurations = {
         laptop = nixpkgs.lib.nixosSystem {
