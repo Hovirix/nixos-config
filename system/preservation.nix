@@ -6,9 +6,10 @@
     preserveAt."/persist" = {
       directories = [
         "/etc/ssh"
+        "/var/lib/flatpak"
         "/var/lib/iwd"
-        "/var/lib/sbctl"
         "/var/lib/nixos"
+        "/var/lib/sbctl"
         "/var/log"
       ];
 
@@ -33,8 +34,9 @@
             directory = ".ssh";
             mode = "0700";
           }
+          ".config"
           ".local"
-          ".local"
+          ".var"
           "Documents"
           "Downloads"
           "Pictures"
