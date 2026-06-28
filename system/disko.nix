@@ -61,23 +61,6 @@
           };
         };
 
-        home = {
-          size = "600G";
-          content = {
-            type = "filesystem";
-            format = "ext4";
-            mountpoint = "/home";
-            mountOptions = [
-              "defaults"
-              "noatime"
-              "lazytime"
-              "commit=600"
-              "nodev"
-              "nosuid"
-            ];
-          };
-        };
-
         persist = {
           size = "100%FREE";
           content = {
@@ -102,6 +85,17 @@
       mountOptions = [
         "defaults"
         "size=4G"
+        "mode=755"
+        "nodev"
+        "nosuid"
+      ];
+    };
+
+    nodev."/home" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "defaults"
+        "size=8G"
         "mode=755"
         "nodev"
         "nosuid"
