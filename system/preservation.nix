@@ -5,7 +5,6 @@
 
     preserveAt."/persist" = {
       directories = [
-        "/etc/ssh"
         "/var/lib/flatpak"
         "/var/lib/iwd"
         "/var/lib/nixos"
@@ -42,6 +41,14 @@
           "Pictures"
           "Projects"
           "Vm"
+        ];
+
+        files = [
+          ".zcompdump"
+          ".zprofile"
+          ".zsh_history"
+          ".zshrc"
+          ".wezterm.lua"
         ];
       };
     };
