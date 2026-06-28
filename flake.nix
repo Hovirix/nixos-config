@@ -17,6 +17,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    preservation.url = "github:nix-community/preservation";
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     lanzaboote = {
@@ -34,10 +36,12 @@
         laptop = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.disko.nixosModules.disko
+            inputs.preservation.nixosModules.preservation
             inputs.sops-nix.nixosModules.sops
 
             ./system/disko.nix
             ./system/hardware-configuration.nix
+            ./system/preservation.nix
 
             # core
             ./modules/core/boot.nix
