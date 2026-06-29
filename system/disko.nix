@@ -1,105 +1,45 @@
 {
-  disko.devices = {
-    disk.nixos = {
-      type = "disk";
-      device = "/dev/disk/by-id/nvme-CT1000P3SSD8_2321E6DBFB5A";
+  disko.devices.disk.nixos = {
+    type = "disk";
+    device = "/dev/disk/by-id/nvme-CT1000P3SSD8_2321E6DBFB5A";
 
-      content = {
-        type = "gpt";
+    content = {
+      type = "gpt";
+      partitions = {
+        boot = {
+          size = "1G";
+          type = "EF00";
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
+            mountOptions = [
+              "defaults"
+              "umask=0077"
+            ];
+          };
+        };
 
-        partitions = {
-          boot = {
-            size = "1G";
-            type = "EF00";
+        root = {
+          size = "100%";
+          content = {
+            type = "luks";
+            name = "cryptroot";
+            extraOpenArgs = [ "--allow-discards" ];
             content = {
               type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
+              format = "ext4";
+              mountpoint = "/";
               mountOptions = [
                 "defaults"
-                "umask=0077"
-                "nodev"
-                "nosuid"
-                "noexec"
+                "noatime"
+                "lazytime"
+                "commit=600"
               ];
             };
           };
-
-          root = {
-            size = "100%";
-            content = {
-              type = "luks";
-              name = "cryptroot";
-              extraOpenArgs = [ "--allow-discards" ];
-              content = {
-                type = "lvm_pv";
-                vg = "system";
-              };
-            };
-          };
         };
       };
-    };
-
-    lvm_vg.system = {
-      type = "lvm_vg";
-      lvs = {
-
-        nix = {
-          size = "300G";
-          content = {
-            type = "filesystem";
-            format = "ext4";
-            mountpoint = "/nix";
-            mountOptions = [
-              "defaults"
-              "noatime"
-              "lazytime"
-              "commit=600"
-              "nodev"
-            ];
-          };
-        };
-
-        persist = {
-          size = "100%FREE";
-          content = {
-            type = "filesystem";
-            format = "ext4";
-            mountpoint = "/persist";
-            mountOptions = [
-              "defaults"
-              "noatime"
-              "lazytime"
-              "commit=600"
-              "nodev"
-              "nosuid"
-            ];
-          };
-        };
-      };
-    };
-
-    nodev."/" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "defaults"
-        "size=4G"
-        "mode=755"
-        "nodev"
-        "nosuid"
-      ];
-    };
-
-    nodev."/home" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "defaults"
-        "size=8G"
-        "mode=755"
-        "nodev"
-        "nosuid"
-      ];
     };
   };
 }
