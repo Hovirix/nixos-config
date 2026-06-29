@@ -37,7 +37,7 @@
             inputs.sops-nix.nixosModules.sops
 
             ./system/disko.nix
-            ./system/hardware-configuration.nix
+            ./system/hardware.nix
 
             # core
             ./modules/core/boot.nix
