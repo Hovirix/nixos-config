@@ -1,4 +1,9 @@
-{ config, pkgs, username, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 let
   backupUser = "laptop";
   backupHost = "truenas.home.hovirix.dev";
@@ -20,7 +25,7 @@ in
     };
   };
 
-  environment.systemPackages = [ pkgs.restic];
+  environment.systemPackages = [ pkgs.restic ];
 
   services.restic.backups.main = {
     user = "root";
@@ -30,7 +35,8 @@ in
     passwordFile = resticPassword;
 
     paths = [
-      "/etc/ssh"
+      "/etc/ssh/id_ed25519"
+      "/etc/ssh/id_ed25519.pub"
       "/home/${username}/.gnupg"
       "/home/${username}/.password-store"
       "/home/${username}/.ssh"
