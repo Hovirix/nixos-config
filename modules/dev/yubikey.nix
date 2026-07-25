@@ -7,8 +7,14 @@
     yubikey-manager
   ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    yubikey-touch-detector = {
+      enable = true;
+      libnotify = true;
+    };
   };
 }

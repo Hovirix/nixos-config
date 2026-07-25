@@ -14,6 +14,7 @@
     bat
     eza
     fzf
+    rtk
     w3m
     yazi
     btop
