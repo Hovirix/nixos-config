@@ -1,7 +1,7 @@
-{ username, ...}:
+{ username, ... }:
 {
   sops = {
-     defaultSopsFile = ../../secrets/laptop.yaml;
-     age.sshKeyPaths = [ "/etc/ssh/id_ed25519"];
+    defaultSopsFile = ../../secrets/laptop.yaml;
+    age.sshKeyPaths = [ "/etc/ssh/id_ed25519" ];
   };
 }
