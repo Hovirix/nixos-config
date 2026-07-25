@@ -19,8 +19,10 @@
 
     packages = [
       "md.obsidian.Obsidian"
+      "io.appflowy.AppFlowy"
       "io.freetubeapp.FreeTube"
       "io.gitlab.librewolf-community"
+      "io.github.ungoogled_software.ungoogled_chromium"
       "org.torproject.torbrowser-launcher"
     ];
   };
