@@ -1,114 +1,126 @@
+<div align="center">
+
 # HX NixOS
 
-Personal NixOS flake for one machine: `nixosConfigurations.laptop`.
+**Declarative [NixOS](https://nixos.org/) configuration for my laptop.**
 
-This repository configures the laptop system from the root flake. The old multi-host layout is gone; there is no `laptop/`, `server/`, or `docs/` directory in the current tree.
+[![NixOS](https://img.shields.io/badge/NixOS-unstable-5277C3?logo=nixos\&logoColor=white)](https://nixos.org/)
+[![License](https://img.shields.io/github/license/Hovirix/nixos-config)](LICENSE)
 
-## What This Manages
+</div>
 
-- Secure Boot through lanzaboote and `/var/lib/sbctl`.
-- Disk layout through disko for a specific NVMe device, with LUKS and ext4.
-- Sway desktop, Flatpak apps, PipeWire, fonts, and desktop packages.
-- Development tooling, shell defaults, containers, YubiKey/GnuPG support, and quick VM tooling.
-- Restic backups and WireGuard configuration through agenix-managed secrets.
+A single-host [Nix Flake](https://wiki.nixos.org/wiki/Flakes) defining the complete laptop system: storage, hardware, desktop, development environment, services, secrets, and recovery.
 
-## Layout
+---
+
+## Contents
+
+* [System Composition](#system-composition)
+* [System](#system)
+* [Repository](#repository)
+* [Operations](#operations)
+* [Secrets](#secrets)
+* [Recovery](#recovery)
+* [License](#license)
+
+## System Composition
+
+```mermaid
+flowchart LR
+    flake[flake.nix] --> laptop[nixosConfigurations.laptop]
+
+    system[system/] --> laptop
+    core[modules/core/] --> laptop
+    hardware[modules/hardware/] --> laptop
+    desktop[modules/desktop/] --> laptop
+    dev[modules/dev/] --> laptop
+    services[modules/services/] --> laptop
+    secrets[secrets/] --> laptop
+
+    laptop --> nixos[NixOS System]
+```
+
+## System
+
+| Layer            | Technology                                                | Role                             |
+| ---------------- | --------------------------------------------------------- | -------------------------------- |
+| Operating System | [NixOS](https://nixos.org/)                               | Declarative system configuration |
+| Storage          | [Disko](https://github.com/nix-community/disko) + LUKS    | Disk layout and encryption       |
+| Secure Boot      | [Lanzaboote](https://github.com/nix-community/lanzaboote) | Secure Boot management           |
+| Desktop          | [Sway](https://swaywm.org/)                               | Wayland desktop                  |
+| Applications     | [Flatpak](https://flatpak.org/) + Nix                     | Desktop and system packages      |
+| Secrets          | [SOPS-Nix](https://github.com/Mic92/sops-nix)             | Encrypted runtime secrets        |
+| Network          | [WireGuard](https://www.wireguard.com/)                   | VPN connectivity                 |
+| Backup           | [Restic](https://restic.net/)                             | Encrypted backups                |
+| Development      | Nix + containers                                          | Development environment          |
+
+## Repository
 
 ```text
 .
-├── flake.nix                    # root flake; wires the only active host
-├── flake.lock                   # pinned inputs
-├── system/
-│   ├── disko.nix                # machine-specific disk layout
-│   └── hardware-configuration.nix
+├── system/             # Disk and hardware configuration
 ├── modules/
-│   ├── core/                    # boot, nix, network, users, time
-│   ├── desktop/                 # sway, flatpak, pipewire, fonts, apps
-│   ├── dev/                     # packages, shell, containers, yubikey
-│   ├── hardware/                # kernel, graphics, bluetooth, tlp, virtualisation
-│   └── services/                # dbus, fstrim, getty, restic, wireguard
-├── secrets/                     # age-encrypted secrets and recipients
-└── AGENTS.md                    # agent-specific repo instructions
+│   ├── core/           # Boot, Nix, network, users, secrets
+│   ├── desktop/        # Sway, applications, audio, fonts
+│   ├── dev/            # Packages, shell, containers, YubiKey
+│   ├── hardware/       # Kernel, graphics, power, virtualisation
+│   └── services/       # Backups, VPN, and system services
+├── secrets/            # SOPS-encrypted secrets
+├── flake.nix           # System composition
+├── flake.lock          # Pinned dependencies
+├── install.sh          # Installation workflow
+└── AGENTS.md           # Repository and agent context
 ```
 
-`flake.nix` is the source of truth for enabled modules. Creating a file under `modules/` does not activate it until it is added to the `modules = [ ... ]` list for `laptop`.
+[`flake.nix`](flake.nix) is the source of truth for enabled modules. A module is active only when explicitly included in `nixosConfigurations.laptop`.
 
-## Commands
+## Operations
 
-Format Nix files:
+Format the configuration:
 
 ```bash
 nix fmt
 ```
 
-Check flake evaluation:
+Validate the flake:
 
 ```bash
 nix flake check
 ```
 
-The check currently passes and may emit this upstream-style evaluation warning:
-
-```text
-'system' has been renamed to/replaced by 'stdenv.hostPlatform.system'
-```
-
-Build the laptop system without switching:
+Build without modifying the running system:
 
 ```bash
 nixos-rebuild build --flake .#laptop
 ```
 
-Apply the system:
+Apply the configuration:
 
 ```bash
 sudo nixos-rebuild switch --flake .#laptop
 ```
 
-Only run the switch command when intentionally changing the live machine.
+Install or rebuild the machine through [nixos-anywhere](https://github.com/nix-community/nixos-anywhere):
+
+```bash
+./install.sh
+```
 
 ## Secrets
 
-Secrets are age-encrypted files in `secrets/*.age`. Do not commit plaintext secrets.
+Secrets are encrypted with [SOPS](https://github.com/getsops/sops) and stored in [`secrets/laptop.yaml`](secrets/laptop.yaml).
 
-New agenix secrets need both:
+[SOPS-Nix](https://github.com/Mic92/sops-nix) decrypts secrets at activation time using the host SSH identity. Plaintext secrets are not stored in Git.
 
-- A recipient declaration in `secrets/secrets.nix`.
-- An `age.secrets.<name>` entry in the module that consumes the secret.
+## Recovery
 
-Current secret consumers:
-
-- `modules/services/wireguard.nix` uses `secrets/wg_config.age` and reads the age identity from `/home/${username}/.ssh/id_ed25519`.
-- `modules/services/restic.nix` uses `secrets/restic_password.age` and `secrets/restic_ssh_key.age`.
-
-## Commit Convention
-
-Use Conventional Commits with a repo-specific scope:
-
-```text
-type(scope): short imperative summary
-```
-
-Preferred types:
-
-- `feat` for new capabilities.
-- `fix` for bug fixes or broken configuration.
-- `refactor` for behavior-preserving restructuring.
-- `chore` for dependency, lockfile, secret rotation, and maintenance changes.
-- `docs` for README and instruction updates.
-
-Preferred scopes match the tree or subsystem, such as `core`, `desktop`, `dev`, `hardware`, `services`, `secrets`, `nix`, or `docs`.
-
-Keep commits focused. Split unrelated system, secret, and documentation changes instead of bundling them into one commit.
-
-Examples:
-
-```text
-feat(services): add restic backups
-chore(secrets): rotate wireguard config
-docs(readme): document laptop flake workflow
-```
+* The complete NixOS configuration is reproducible from Git and `flake.lock`.
+* Disk layout and encryption are declared with Disko.
+* `install.sh` provides the machine installation path through nixos-anywhere.
+* SOPS restores encrypted runtime configuration.
+* Restic protects persistent user and security-critical data.
 
 ## License
 
-[MIT](./LICENSE)
+Distributed under the [MIT License](LICENSE).
+
