@@ -18,6 +18,8 @@
     w3m
     yazi
     btop
+    kitty
+    herdr
     helix
     delta
     zoxide
