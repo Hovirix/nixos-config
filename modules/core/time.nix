@@ -1,3 +1,3 @@
 {
-  time.timeZone = "Africa/Casablanca";
+  time.timeZone = "Europe/Rome";
 }
