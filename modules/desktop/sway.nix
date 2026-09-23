@@ -9,6 +9,7 @@
       fuzzel
       grim
       i3status
+      jq # For IPC events
       libnotify
       mako
       papirus-icon-theme

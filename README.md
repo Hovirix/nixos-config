@@ -48,7 +48,7 @@ flowchart LR
 | Storage          | [Disko](https://github.com/nix-community/disko) + LUKS    | Disk layout and encryption       |
 | Secure Boot      | [Lanzaboote](https://github.com/nix-community/lanzaboote) | Secure Boot management           |
 | Desktop          | [Sway](https://swaywm.org/)                               | Wayland desktop                  |
-| Applications     | [Flatpak](https://flatpak.org/) + Nix                     | Desktop and system packages      |
+| Applications     | Nix                                                       | Desktop and system packages      |
 | Secrets          | [SOPS-Nix](https://github.com/Mic92/sops-nix)             | Encrypted runtime secrets        |
 | Network          | [WireGuard](https://www.wireguard.com/)                   | VPN connectivity                 |
 | Backup           | [Restic](https://restic.net/)                             | Encrypted backups                |
@@ -123,4 +123,3 @@ Secrets are encrypted with [SOPS](https://github.com/getsops/sops) and stored in
 ## License
 
 Distributed under the [MIT License](LICENSE).
-

@@ -17,8 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,12 +55,12 @@
 
             # desktop
             # ./modules/desktop/hyprland.nix
-            ./modules/desktop/sway.nix
+            # ./modules/desktop/sway.nix
+            ./modules/desktop/mangowm.nix
             ./modules/desktop/apps.nix
             ./modules/desktop/pipewire.nix
             ./modules/desktop/font.nix
             # ./modules/desktop/xdg.nix
-            ./modules/desktop/flatpak.nix
 
             # dev
             # ./modules/dev/adb.nix
