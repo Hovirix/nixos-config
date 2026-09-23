@@ -3,10 +3,11 @@
   virtualisation = {
     docker = {
       enable = true;
-      # rootless = {
-      #   enable = true;
-      #   setSocketVariable = true;
-      # };
+      enableOnBoot = false;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
     };
 
     # podman = {
@@ -15,5 +16,5 @@
     #   autoPrune.enable = true;
     # };
   };
-  users.users.${username}.extraGroups = [ "docker" ];
+  # users.users.${username}.extraGroups = [ "docker" ];
 }
