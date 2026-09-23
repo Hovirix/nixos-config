@@ -76,6 +76,7 @@
             ./modules/services/fstrim.nix
             ./modules/services/getty.nix
             ./modules/services/restic.nix
+            ./modules/services/upower.nix
             ./modules/services/wireguard.nix
           ];
 
