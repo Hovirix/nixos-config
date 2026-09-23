@@ -11,7 +11,7 @@
   networking = {
     firewall.checkReversePath = "loose";
     wg-quick.interfaces.wg0 = {
-      autostart = true;
+      autostart = false;
       configFile = config.sops.secrets."wireguard/config".path;
     };
   };

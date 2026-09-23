@@ -37,8 +37,7 @@ in
     paths = [
       "/etc/ssh/id_ed25519"
       "/etc/ssh/id_ed25519.pub"
-      "/home/${username}/.gnupg"
-      "/home/${username}/.password-store"
+      "/home/${username}/.config"
       "/home/${username}/.ssh"
       "/home/${username}/Documents"
       "/home/${username}/Projects"
