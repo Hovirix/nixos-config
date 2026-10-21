@@ -57,7 +57,6 @@
             ./modules/desktop/xdg.nix
 
             # dev
-            # ./modules/dev/adb.nix
             ./modules/dev/containers.nix
             ./modules/dev/packages.nix
             ./modules/dev/shell.nix

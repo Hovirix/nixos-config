@@ -13,7 +13,6 @@
     bat
     eza
     fzf
-    rtk
     w3m
     yazi
     btop
@@ -26,10 +25,11 @@
     ripgrep
     chezmoi
     starship
-    trash-cli
     fastfetch
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.rtk
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.chatgpt
-    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
   ];
 
   programs = {
