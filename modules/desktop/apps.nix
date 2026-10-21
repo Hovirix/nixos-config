@@ -8,9 +8,8 @@
     wezterm
     zathura
     ungoogled-chromium
-    appflowy
     freetube
-    stirling-pdf-desktop
+    thunderbird
   ];
 
   programs.localsend = {

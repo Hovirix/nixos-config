@@ -50,13 +50,11 @@
             ./modules/hardware/virtualisation.nix
 
             # desktop
-            # ./modules/desktop/hyprland.nix
-            # ./modules/desktop/sway.nix
-            ./modules/desktop/mangowm.nix
+            ./modules/desktop/mango.nix
             ./modules/desktop/apps.nix
             ./modules/desktop/pipewire.nix
             ./modules/desktop/font.nix
-            # ./modules/desktop/xdg.nix
+            ./modules/desktop/xdg.nix
 
             # dev
             # ./modules/dev/adb.nix
